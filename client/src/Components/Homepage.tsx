@@ -8,3 +8,4 @@ const Home: React.FC = () => (
     </p>
   </>
 );
+export default Home;
