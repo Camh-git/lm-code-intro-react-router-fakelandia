@@ -18,7 +18,7 @@ const Misdomeanours: React.FC = () => {
   }, []);
   return (
     <>
-      <h2>Misdomeanours</h2>
+      <h1>Misdomeanours</h1>
       <p>{incidents === undefined && "Loading..."}</p>
       {incidents && (
         <table>
