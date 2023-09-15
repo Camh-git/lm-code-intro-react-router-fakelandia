@@ -43,7 +43,7 @@ header {
 header img {
   max-width: 20vw;
   max-height: 10vw;
-  margin-left: 10vw;
+  margin-left: 5vw;
 }
 header nav {
   width: 50vw;
@@ -55,4 +55,8 @@ header nav a {
   text-decoration: none;
   color: black;
   font-size: 3rem;
+}
+header nav a.active {
+  color: blue;
+  font-weight: bold;
 }
