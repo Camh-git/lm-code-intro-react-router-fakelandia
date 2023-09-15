@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { json } from "stream/consumers";
 
 const Confess: React.FC = () => {
   const submitBtn = document.getElementById("confessSubmit");
@@ -15,6 +16,25 @@ const Confess: React.FC = () => {
       submitBtn?.setAttribute("disabled", "");
     }
   }, [subjectLength, reasonSelected, descLength]);
+
+  function sendToServer() {
+    //figure out how to convert the values into json
+    const data = "";
+    let response = "";
+    const request = async () => {
+      const result = await fetch("http://localhost:8080/api/confess", {
+        method: "POST",
+        body: data,
+      });
+      result.json().then((json) => {
+        response = json;
+      });
+      //Handle response
+      //error if response.success is false
+      //if succeess & !just talked add to misdomeanours
+      //do nothing if just talked is true
+    };
+  }
   return (
     <>
       <h1>Confess</h1>
@@ -26,7 +46,7 @@ const Confess: React.FC = () => {
         However if you're having a hard day and need to vent then your'e welcome
         to contact us here too. Up to you!
       </p>
-      <form name="confessionForm">
+      <form name="confessionForm" onSubmit={sendToServer}>
         {/*Add an onsumbit to the form*/}
         <label htmlFor="confesSubject">Subject: </label>
         <input
