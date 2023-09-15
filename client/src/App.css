@@ -60,3 +60,15 @@ header nav a.active {
   color: blue;
   font-weight: bold;
 }
+
+table {
+  width: 50vw;
+  margin-left: 25vw;
+  padding: 3vh;
+}
+th {
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 0;
+  border-bottom: 5px solid black;
+}
