@@ -11,6 +11,8 @@ const Confess: React.FC = () => {
     /*Chosen rules: must have a subject of > 5 chars, a description >20 and a reason selected */
     if (subjectLength >= 5 && reasonSelected != 0 && descLength >= 20) {
       submitBtn?.removeAttribute("disabled");
+    } else {
+      submitBtn?.setAttribute("disabled", "");
     }
   }, [subjectLength, reasonSelected, descLength]);
   return (
