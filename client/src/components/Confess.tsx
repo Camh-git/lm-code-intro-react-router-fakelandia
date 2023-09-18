@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { json } from "stream/consumers";
+import { json } from "node:stream/consumers";
 
 const Confess: React.FC = () => {
   const submitBtn = document.getElementById("confessSubmit");
@@ -21,14 +21,32 @@ const Confess: React.FC = () => {
     }
   }, [subject, reasonSelected, description]);
 
+  function convertReason(selectedOption: number) {
+    switch (reasonSelected) {
+      case 1:
+        return "rudeness";
+      case 2:
+        return "vegetables";
+      case 3:
+        return "lift";
+      case 4:
+        return "united";
+      case 5:
+        return "vent";
+    }
+  }
   function sendToServer() {
     //figure out how to convert the values into json
-    const data = "";
+    const data = {
+      subject: subject,
+      reason: convertReason(reasonSelected),
+      details: description,
+    };
     let response = "";
     const request = async () => {
       const result = await fetch("http://localhost:8080/api/confess", {
         method: "POST",
-        body: data,
+        body: JSON.stringify(data),
       });
       result.json().then((json) => {
         response = json;
