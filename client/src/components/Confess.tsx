@@ -3,19 +3,23 @@ import { json } from "stream/consumers";
 
 const Confess: React.FC = () => {
   const submitBtn = document.getElementById("confessSubmit");
-  const [subjectLength, setSubjectLength] = useState(0);
+  const [subject, setSubject] = useState("");
   const [reasonSelected, setreasonSelected] = useState(0);
-  const [descLength, setdescLength] = useState(0);
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     /*Validation*/
     /*Chosen rules: must have a subject of > 5 chars, a description >20 and a reason selected */
-    if (subjectLength >= 5 && reasonSelected != 0 && descLength >= 20) {
+    if (
+      subject.length >= 5 &&
+      reasonSelected !== 0 &&
+      description.length >= 20
+    ) {
       submitBtn?.removeAttribute("disabled");
     } else {
       submitBtn?.setAttribute("disabled", "");
     }
-  }, [subjectLength, reasonSelected, descLength]);
+  }, [subject, reasonSelected, description]);
 
   function sendToServer() {
     //figure out how to convert the values into json
@@ -48,11 +52,11 @@ const Confess: React.FC = () => {
       </p>
       <form name="confessionForm" onSubmit={sendToServer}>
         {/*Add an onsumbit to the form*/}
-        <label htmlFor="confesSubject">Subject: </label>
+        <label htmlFor="confessSubject">Subject: </label>
         <input
           type="text"
           id="confessSubject"
-          onChange={(e) => setSubjectLength(e.target.value.length)}
+          onChange={(e) => setSubject(e.target.value)}
         ></input>
 
         <label htmlFor="confessReason">Reason for contact</label>
@@ -70,7 +74,7 @@ const Confess: React.FC = () => {
 
         <textarea
           id="confessDescription"
-          onChange={(e) => setdescLength(e.target.value.length)}
+          onChange={(e) => setDescription(e.target.value)}
         ></textarea>
 
         <input type="submit" value="submit" id="confessSubmit" disabled></input>
