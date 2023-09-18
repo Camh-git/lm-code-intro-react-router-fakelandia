@@ -22,36 +22,44 @@ const Misdomeanours: React.FC = () => {
       <p>{incidents === undefined && "Loading..."}</p>
       {incidents && (
         <table>
-          <tr>
-            <th>Citizen ID</th>
-            <th>Date</th>
-            <th>Misdomeanour</th>
-            <th>Punishment idea</th>
-          </tr>
-          <tr>
-            <td>{incidents[0].citizenId}</td>
-            <td>{incidents[0].date}</td>
-            <td>{incidents[0].misdemeanour}</td>
-            <td>
-              <img src="https://picsum.photos/190/100" alt="punishment idea" />
-            </td>
-          </tr>
-          <tr>
-            <td>{incidents[1].citizenId}</td>
-            <td>{incidents[1].date}</td>
-            <td>{incidents[1].misdemeanour}</td>
-            <td>
-              <img src="https://picsum.photos/190/99" alt="punishment idea" />
-            </td>
-          </tr>
-          <tr>
-            <td>{incidents[2].citizenId}</td>
-            <td>{incidents[2].date}</td>
-            <td>{incidents[2].misdemeanour}</td>
-            <td>
-              <img src="https://picsum.photos/190/101" alt="punishment idea" />
-            </td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Citizen ID</th>
+              <th>Date</th>
+              <th>Misdomeanour</th>
+              <th>Punishment idea</th>
+            </tr>
+            <tr>
+              <td>{incidents[0].citizenId}</td>
+              <td>{incidents[0].date}</td>
+              <td>{incidents[0].misdemeanour}</td>
+              <td>
+                <img
+                  src="https://picsum.photos/190/100"
+                  alt="punishment idea"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td>{incidents[1].citizenId}</td>
+              <td>{incidents[1].date}</td>
+              <td>{incidents[1].misdemeanour}</td>
+              <td>
+                <img src="https://picsum.photos/190/99" alt="punishment idea" />
+              </td>
+            </tr>
+            <tr>
+              <td>{incidents[2].citizenId}</td>
+              <td>{incidents[2].date}</td>
+              <td>{incidents[2].misdemeanour}</td>
+              <td>
+                <img
+                  src="https://picsum.photos/190/101"
+                  alt="punishment idea"
+                />
+              </td>
+            </tr>
+          </tbody>
         </table>
       )}
     </>
