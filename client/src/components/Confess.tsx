@@ -52,9 +52,13 @@ const Confess: React.FC = () => {
         response = json;
       });
       //Handle response
-      //error if response.success is false
-      //if succeess & !just talked add to misdomeanours
-      //do nothing if just talked is true
+      if (!result.ok) {
+        //throw error
+      } else if (result.status === 200 && reasonSelected !== 5) {
+        //add to misdomeanours list
+      } else if (reasonSelected === 5) {
+        //do nothing (delete this if?)
+      }
     };
   }
   return (
