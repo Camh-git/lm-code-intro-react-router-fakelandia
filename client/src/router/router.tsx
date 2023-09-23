@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Homepage from "../components/homepage";
 import Confess from "../components/confess";
-import Misdomeanours from "../components/misdomeanours";
+import Misdomeanours from "../components/misdemeanours";
 import NotFound from "../components/not_found";
 import MainLayout from "../components/main_layout";
 
