@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { json } from "node:stream/consumers";
+import { error } from "console";
 
 const Confess: React.FC = () => {
   const submitBtn = document.getElementById("confessSubmit");
@@ -54,10 +55,15 @@ const Confess: React.FC = () => {
       //Handle response
       if (!result.ok) {
         //throw error
+        throw new Error("There was a problem:" + result.statusText);
       } else if (result.status === 200 && reasonSelected !== 5) {
         //add to misdomeanours list
+        try {
+        } catch (error) {
+          console.log(error);
+        }
       } else if (reasonSelected === 5) {
-        //do nothing (delete this if?)
+        console.log("Venting message recieved, sending cheerful email");
       }
     };
   }
