@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { Misdemeanour } from "../types/misdemeanours.types";
+import {
+  Misdemeanour,
+  misdemeanourContext,
+} from "../types/misdemeanours.types";
 
 const Misdomeanours: React.FC = () => {
   const [incidents, setIncidents] = useState<Array<Misdemeanour>>();

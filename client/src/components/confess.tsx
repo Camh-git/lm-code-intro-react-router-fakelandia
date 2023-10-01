@@ -1,6 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-import { json } from "node:stream/consumers";
-import { error } from "console";
+import { useContext, useEffect, useState } from "react";
+import {
+  Misdemeanour,
+  misdemeanourContext,
+} from "../types/misdemeanours.types";
+import misdemeanourList from "./misdemeanour_list";
 
 const Confess: React.FC = () => {
   const submitBtn = document.getElementById("confessSubmit");
@@ -59,6 +62,8 @@ const Confess: React.FC = () => {
       } else if (result.status === 200 && reasonSelected !== 5) {
         //add to misdomeanours list
         try {
+          //since the send was good push this to a context
+          //for some reason the push option isn't appearing despite the context being a misedemeaour array
         } catch (error) {
           console.log(error);
         }
