@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import {
   Misdemeanour,
+  MisdemeanourKind,
   misdemeanourContext,
 } from "../types/misdemeanours.types";
 import misdemeanourList from "./misdemeanour_list";
@@ -39,6 +40,20 @@ const Confess: React.FC = () => {
         return "vent";
     }
   }
+  function strictConvertReason(selectedOption: number): MisdemeanourKind {
+    //basicaly a version of the above without vent and a strict return type to make ts happy
+    //decided to make vegetables the default return, since we need one and it seems like an easy mistake to make
+    switch (reasonSelected) {
+      case 1:
+        return "rudeness";
+      case 3:
+        return "lift";
+      case 4:
+        return "united";
+    }
+    return "vegetables";
+  }
+  const incidentList = useContext(misdemeanourContext);
   function sendToServer() {
     //figure out how to convert the values into json
     const data = {
@@ -64,6 +79,11 @@ const Confess: React.FC = () => {
         try {
           //since the send was good push this to a context
           //for some reason the push option isn't appearing despite the context being a misedemeaour array
+          incidentList.push({
+            citizenId: Math.floor(Math.random() * 5000000),
+            misdemeanour: strictConvertReason(reasonSelected),
+            date: Date(),
+          });
         } catch (error) {
           console.log(error);
         }
