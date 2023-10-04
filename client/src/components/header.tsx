@@ -5,8 +5,8 @@ const navHeader: React.FC = () => (
     <img src={logo} alt="logo" className="HeaderLogo" />
     <nav style={{ width: "100%" }}>
       <NavLink to="/">Home</NavLink>
-      <NavLink to="/confess">confess</NavLink>
-      <NavLink to="/Misdomeanours">Misdomeanours</NavLink>
+      <NavLink to="/confess">Confess</NavLink>
+      <NavLink to="/misdomeanours">Misdomeanours</NavLink>
     </nav>
   </header>
 );

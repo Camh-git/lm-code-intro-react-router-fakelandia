@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import {
   Misdemeanour,
   MisdemeanourKind,
-  misdemeanourContext,
+  MisdemeanourContext,
 } from "../types/misdemeanours.types";
 import misdemeanourList from "./misdemeanour_list";
 
@@ -53,7 +53,7 @@ const Confess: React.FC = () => {
     }
     return "vegetables";
   }
-  const incidentList = useContext(misdemeanourContext);
+  const incidentList = useContext(MisdemeanourContext);
   function sendToServer() {
     //figure out how to convert the values into json
     const data = {

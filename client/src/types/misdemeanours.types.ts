@@ -21,6 +21,6 @@ export const placeholderMisdemeanour: Misdemeanour = {
   date: "",
 };
 
-export const misdemeanourContext = createContext<Misdemeanour[]>([
+export const MisdemeanourContext = createContext<Misdemeanour[]>([
   placeholderMisdemeanour,
 ]);

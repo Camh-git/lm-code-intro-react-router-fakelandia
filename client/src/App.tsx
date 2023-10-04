@@ -4,18 +4,18 @@ import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./router/router";
 import {
-  misdemeanourContext,
+  MisdemeanourContext,
   placeholderMisdemeanour,
 } from "./types/misdemeanours.types";
 
 function App() {
   return (
     <div className="App">
-      <misdemeanourContext.Provider value={[placeholderMisdemeanour]}>
+      <MisdemeanourContext.Provider value={[placeholderMisdemeanour]}>
         <BrowserRouter>
           <Router />
         </BrowserRouter>
-      </misdemeanourContext.Provider>
+      </MisdemeanourContext.Provider>
     </div>
   );
 }

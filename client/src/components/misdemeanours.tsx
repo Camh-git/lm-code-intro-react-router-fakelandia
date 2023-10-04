@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {
   Misdemeanour,
-  misdemeanourContext,
+  MisdemeanourContext,
 } from "../types/misdemeanours.types";
 
 const Misdomeanours: React.FC = () => {
