@@ -1,16 +1,13 @@
 import { useContext, useEffect, useState } from "react";
-import {
-  Misdemeanour,
-  MisdemeanourKind,
-  MisdemeanourContext,
-} from "../types/misdemeanours.types";
-import misdemeanourList from "./misdemeanour_list";
+import { MisdemeanourKind } from "../types/misdemeanours.types";
+import MisdemeanourContext from "../hooks/misdemeanour_context";
 
 const Confess: React.FC = () => {
   const submitBtn = document.getElementById("confessSubmit");
   const [subject, setSubject] = useState("");
   const [reasonSelected, setreasonSelected] = useState(0);
   const [description, setDescription] = useState("");
+  const incidentList = useContext(MisdemeanourContext);
 
   useEffect(() => {
     /*Validation*/
@@ -26,7 +23,7 @@ const Confess: React.FC = () => {
     }
   }, [subject, reasonSelected, description]);
 
-  function convertReason(selectedOption: number) {
+  function convertReason() {
     switch (reasonSelected) {
       case 1:
         return "rudeness";
@@ -53,12 +50,12 @@ const Confess: React.FC = () => {
     }
     return "vegetables";
   }
-  const incidentList = useContext(MisdemeanourContext);
+
   function sendToServer() {
     //figure out how to convert the values into json
     const data = {
       subject: subject,
-      reason: convertReason(reasonSelected),
+      reason: convertReason(),
       details: description,
     };
     let response = "";
@@ -77,13 +74,14 @@ const Confess: React.FC = () => {
       } else if (result.status === 200 && reasonSelected !== 5) {
         //add to misdomeanours list
         try {
-          //since the send was good push this to a context
-          //for some reason the push option isn't appearing despite the context being a misedemeaour array
-          incidentList.push({
-            citizenId: Math.floor(Math.random() * 5000000),
-            misdemeanour: strictConvertReason(reasonSelected),
-            date: Date(),
-          });
+          //can't add ...misdemeanours, apparntly it's an fc
+          incidentList.setMisdemeanours([
+            {
+              citizenId: Math.floor(Math.random() * 5000000),
+              misdemeanour: strictConvertReason(reasonSelected),
+              date: Date(),
+            },
+          ]);
         } catch (error) {
           console.log(error);
         }

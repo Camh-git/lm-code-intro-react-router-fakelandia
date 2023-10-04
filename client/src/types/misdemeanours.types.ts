@@ -1,4 +1,3 @@
-import { createContext } from "react";
 export const MISDEMEANOURS = [
   "rudeness",
   "vegetables",
@@ -15,12 +14,3 @@ export type Misdemeanour = {
   misdemeanour: MisdemeanourKind;
   date: string; // we'll stringify this for easy sending via HTTP rather than storing the full Date object
 };
-export const placeholderMisdemeanour: Misdemeanour = {
-  citizenId: 0,
-  misdemeanour: "rudeness",
-  date: "",
-};
-
-export const MisdemeanourContext = createContext<Misdemeanour[]>([
-  placeholderMisdemeanour,
-]);

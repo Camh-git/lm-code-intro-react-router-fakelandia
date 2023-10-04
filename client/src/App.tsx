@@ -1,17 +1,26 @@
 import React from "react";
-import logo from "./Fakelandia_DOJ_logo.png";
+import { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import { Router } from "./router/router";
-import {
-  MisdemeanourContext,
-  placeholderMisdemeanour,
-} from "./types/misdemeanours.types";
-
+import { Misdemeanour } from "./types/misdemeanours.types";
+import MisdemeanourContext from "./hooks/misdemeanour_context";
 function App() {
+  const [incidents, setIncidents] = useState<Array<Misdemeanour> | undefined>();
+
+  useEffect(() => {
+    const list = async () => {
+      const result = await fetch("http://localhost:8080/api/misdemeanours/3");
+      const json = await result.json();
+      setIncidents(json);
+    };
+    list();
+  }, []);
   return (
     <div className="App">
-      <MisdemeanourContext.Provider value={[placeholderMisdemeanour]}>
+      <MisdemeanourContext.Provider
+        value={{ misdemeanours: incidents, setMisdemeanours: setIncidents }}
+      >
         <BrowserRouter>
           <Router />
         </BrowserRouter>

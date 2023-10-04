@@ -1,21 +1,15 @@
 import { useEffect, useState } from "react";
-import {
-  Misdemeanour,
-  MisdemeanourContext,
-} from "../types/misdemeanours.types";
+import { Misdemeanour } from "../types/misdemeanours.types";
+import MisdemeanourContext from "../hooks/misdemeanour_context";
 
 const Misdomeanours: React.FC = () => {
   const [incidents, setIncidents] = useState<Array<Misdemeanour>>();
   useEffect(() => {
     const list = async () => {
       const result = await fetch("http://localhost:8080/api/misdemeanours/3");
-      result.json().then((json) => {
-        setIncidents(json.misdemeanours);
-        /*console.log("json");
-        console.log(json);
-        console.log("state:");
-        console.log(incidents);//keep until done, for when it inevitably breaks */
-      });
+      const json = await result.json();
+      setIncidents(json.misdemeanours);
+      //console.log(json); //Sanity check
     };
     list();
   }, []);
