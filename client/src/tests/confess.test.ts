@@ -1,16 +1,45 @@
+import { render, screen } from "@testing-library/react";
 import Confess from "../components/confess";
-describe("Test the validation", () => {
-  test("Check the min subject length", () => {
-    expect("").toBe("");
-  });
-  test("Check that the reason is one of the 5 valid numbers", () => {
-    expect("").toBe("");
-  });
-  test("Check the min description length", () => {
-    expect("").toBe("");
-  });
-  test("Check that the button is disabled at the right time", () => {
-    expect("").toBe("");
+describe("Sanity check", () => {
+  test("guaranteed to pass", () => {
+    expect(1).toBe(1);
   });
 });
-export {};
+describe("Render test", () => {
+  //render(<Confess>)
+  test("Find the rendered tite", () => {
+    expect(
+      screen.getByText(
+        "It's very difficult to catch people commiting misdomeanours"
+      )
+    ).toBeInTheDocument();
+  });
+});
+describe("Test the validation", () => {
+  //render(<Confess>)
+  //get the relevent fields and submit btn
+  const subject = screen.getByTestId("confessSubject");
+  const description = screen.getByTestId("confessDescription");
+  const submitBtn = screen.getByTestId("submit");
+  test("Check the min subject length", () => {
+    //set and check a good inital value  for subject, make it invalid to check the submit button, then check it re-enables
+    subject.nodeValue = "validIssue";
+    expect(subject.nodeValue.length).toBeGreaterThanOrEqual(5);
+    subject.nodeValue = "va";
+    expect(submitBtn.hasAttribute("disabled")).toBe(true);
+    subject.nodeValue = "validIssue";
+    expect(submitBtn.hasAttribute("disabled")).toBe(false);
+  });
+
+  test("Check the min description length", () => {
+    //set and check a good inital description, make it invalid to check the submit button, then check it re-enables
+    description.nodeValue =
+      "Yay, now I have to think of some placeholder content that is at least 20 chars long";
+    expect(description.nodeValue.length).toBeGreaterThanOrEqual(20);
+    description.nodeValue = "shortdesc";
+    expect(submitBtn.hasAttribute("disabled")).toBe(true);
+    description.nodeValue =
+      "Yay, now I have to think of some placeholder content that is at least 20 chars long";
+    expect(submitBtn.hasAttribute("disabled")).toBe(false);
+  });
+});

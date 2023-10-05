@@ -14,3 +14,17 @@ export type Misdemeanour = {
   misdemeanour: MisdemeanourKind;
   date: string; // we'll stringify this for easy sending via HTTP rather than storing the full Date object
 };
+export function isMisdemeanour(input: string | null): boolean {
+  if (input) {
+    switch (input.toUpperCase()) {
+      case "RUDENESS":
+      case "VEGETABLES":
+      case "LIFT":
+      case "UNITED":
+        return true;
+      default:
+        return false;
+    }
+  }
+  return false;
+}

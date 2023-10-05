@@ -12,15 +12,18 @@ const Confess: React.FC = () => {
   useEffect(() => {
     /*Validation*/
     /*Chosen rules: must have a subject of > 5 chars, a description >20 and a reason selected */
-    if (
-      subject.length >= 5 &&
-      reasonSelected !== 0 &&
-      description.length >= 20
-    ) {
-      submitBtn?.removeAttribute("disabled");
-    } else {
-      submitBtn?.setAttribute("disabled", "");
+    function validateInput() {
+      if (
+        subject.length >= 5 &&
+        reasonSelected !== 0 &&
+        description.length >= 20
+      ) {
+        submitBtn?.removeAttribute("disabled");
+      } else {
+        submitBtn?.setAttribute("disabled", "");
+      }
     }
+    validateInput();
   }, [subject, reasonSelected, description]);
 
   function convertReason() {
@@ -113,6 +116,7 @@ const Confess: React.FC = () => {
         <label htmlFor="confessReason">Reason for contact</label>
         <select
           id="confessReason"
+          data-testid="confessReason"
           onChange={(e) => setreasonSelected(e.target.selectedIndex)}
         >
           <option value="select">Select</option>
@@ -125,10 +129,17 @@ const Confess: React.FC = () => {
 
         <textarea
           id="confessDescription"
+          data-testid="confessDescription"
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
 
-        <input type="submit" value="submit" id="confessSubmit" disabled></input>
+        <input
+          type="submit"
+          value="submit"
+          id="confessSubmit"
+          data-testid="submit"
+          disabled
+        ></input>
       </form>
     </>
   );

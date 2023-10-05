@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { Misdemeanour, MisdemeanourKind } from "../types/misdemeanours.types";
+import { Misdemeanour } from "../types/misdemeanours.types";
 import MisdemeanourContext from "../hooks/misdemeanour_context";
 
 const Misdomeanours: React.FC = () => {
@@ -34,7 +34,7 @@ const Misdomeanours: React.FC = () => {
   }, [filter]);
 
   return (
-    <>
+    <div>
       <h1>Misdemeanours</h1>
       <label htmlFor="filterOptions">Filter misdemeanours:</label>
       <select
@@ -61,9 +61,9 @@ const Misdomeanours: React.FC = () => {
             {visibleList?.map((index) => {
               return (
                 <tr>
-                  <td>{index.citizenId}</td>
+                  <td data-testid="citizenId">{index.citizenId}</td>
                   <td>{index.date}</td>
-                  <td>{index.misdemeanour}</td>
+                  <td data-testid="incidentType">{index.misdemeanour}</td>
                   <td>
                     <img
                       //TODO: try and find what the valid range is so you can call some different images
@@ -77,7 +77,7 @@ const Misdomeanours: React.FC = () => {
           </tbody>
         </table>
       )}
-    </>
+    </div>
   );
 };
 
