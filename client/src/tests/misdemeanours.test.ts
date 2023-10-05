@@ -1,9 +1,11 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { isMisdemeanour } from "../types/misdemeanours.types";
+import Misdomeanours from "../components/misdemeanours";
+//The above show up as unused import errors but are essential, the code that relies on them is commented out due to bugs
 
 describe("Render test", () => {
-  //render(<Misdomeanours>)
+  //render(<Misdomeanours/>);
   test("Find the rendered tite", () => {
     expect(screen.getByText("Misdemeanours")).toBeInTheDocument();
   });

@@ -41,8 +41,8 @@ const Confess: React.FC = () => {
     }
   }
   function strictConvertReason(selectedOption: number): MisdemeanourKind {
-    //basicaly a version of the above without vent and a strict return type to make ts happy
-    //decided to make vegetables the default return, since we need one and it seems like an easy mistake to make
+    //Basicaly a version of the above without vent and a strict return type to make ts happy
+    //Decided to make vegetables the default return, since we need one and it seems like an easy mistake to make
     switch (reasonSelected) {
       case 1:
         return "rudeness";
@@ -55,13 +55,13 @@ const Confess: React.FC = () => {
   }
 
   function sendToServer() {
-    //figure out how to convert the values into json
+    //Figure out how to convert the values into json
     const data = {
       subject: subject,
       reason: convertReason(),
       details: description,
     };
-    let response = "";
+    let response = ""; //This is assigned on line 71
     const request = async () => {
       const result = await fetch("http://localhost:8080/api/confess", {
         method: "POST",
@@ -72,12 +72,12 @@ const Confess: React.FC = () => {
       });
       //Handle response
       if (!result.ok) {
-        //throw error
+        //Throw error
         throw new Error("There was a problem:" + result.statusText);
       } else if (result.status === 200 && reasonSelected !== 5) {
-        //add to misdomeanours list
+        //Add to misdomeanours list
         try {
-          //can't add ...misdemeanours, apparntly it's an fc
+          //Can't add ...misdemeanours, apparently it's an fc
           incidentList.setMisdemeanours([
             {
               citizenId: Math.floor(Math.random() * 5000000),
@@ -98,7 +98,7 @@ const Confess: React.FC = () => {
       <h1>Confess</h1>
       <p>
         It's very difficult to catch people commiting misdomeanours so we
-        appreciate it when citizens confess to us directly
+        appreciate it when citizens confess to us directly.
       </p>
       <p>
         However if you're having a hard day and need to vent then your'e welcome
@@ -113,7 +113,7 @@ const Confess: React.FC = () => {
           onChange={(e) => setSubject(e.target.value)}
         ></input>
 
-        <label htmlFor="confessReason">Reason for contact</label>
+        <label htmlFor="confessReason">Reason for contact:</label>
         <select
           id="confessReason"
           data-testid="confessReason"
@@ -126,7 +126,7 @@ const Confess: React.FC = () => {
           <option value="united">Supporting manchester united</option>
           <option value="vent">Venting</option>
         </select>
-
+        <label htmlFor="confessDescription">Description:</label>
         <textarea
           id="confessDescription"
           data-testid="confessDescription"

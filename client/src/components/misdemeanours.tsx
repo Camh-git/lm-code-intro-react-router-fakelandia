@@ -20,7 +20,6 @@ const Misdomeanours: React.FC = () => {
 
   useEffect(() => {
     if (filter === "none") {
-      console.log("unfiltered");
       setvisibleList(incidents);
     } else {
       let visible: Misdemeanour[] = [];
@@ -66,7 +65,7 @@ const Misdomeanours: React.FC = () => {
                   <td data-testid="incidentType">{index.misdemeanour}</td>
                   <td>
                     <img
-                      //TODO: try and find what the valid range is so you can call some different images
+                      //TODO: Try and find what the valid range is so you can call some different images
                       src="https://picsum.photos/190/100"
                       alt="punishment idea"
                     />

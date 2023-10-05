@@ -1,12 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import Confess from "../components/confess";
+//The above show up as unused import errors but are essential, the code that relies on them is commented out due to bugs
 describe("Sanity check", () => {
-  test("guaranteed to pass", () => {
+  test("Guaranteed to pass", () => {
     expect(1).toBe(1);
   });
 });
 describe("Render test", () => {
-  //render(<Confess>)
+  //render(<Confess/>);
   test("Find the rendered tite", () => {
     expect(
       screen.getByText(
