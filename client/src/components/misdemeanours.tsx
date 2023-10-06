@@ -12,6 +12,7 @@ const Misdomeanours: React.FC = () => {
       const result = await fetch("http://localhost:8080/api/misdemeanours/3");
       const json = await result.json();
       setIncidents(json.misdemeanours);
+      setvisibleList(json.misdemeanours);
       incidentContext.setMisdemeanours(incidents);
     };
     list();
@@ -58,17 +59,17 @@ const Misdomeanours: React.FC = () => {
               <th>Punishment idea</th>
             </tr>
             {visibleList?.map((index) => {
+              const imageSrc =
+                "https://picsum.photos/id/" +
+                Math.floor(Math.random() * 1080) +
+                "/190/100";
               return (
                 <tr>
                   <td data-testid="citizenId">{index.citizenId}</td>
                   <td>{index.date}</td>
                   <td data-testid="incidentType">{index.misdemeanour}</td>
                   <td>
-                    <img
-                      //TODO: Try and find what the valid range is so you can call some different images
-                      src="https://picsum.photos/190/100"
-                      alt="punishment idea"
-                    />
+                    <img src={imageSrc} alt="punishment idea" />
                   </td>
                 </tr>
               );
