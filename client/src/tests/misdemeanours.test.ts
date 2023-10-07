@@ -12,6 +12,7 @@ describe("Render test", () => {
 });
 describe("Testing the fetch", () => {
   //render(<Misdomeanours>)
+  //Not sure if this will work without the state, might import the fetch, similar to confess
   test("Check that the fetch returns 3 entries", () => {
     expect(screen.getAllByRole("img").length).toBe(3);
   });

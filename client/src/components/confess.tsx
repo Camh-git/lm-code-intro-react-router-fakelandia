@@ -2,6 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import { MisdemeanourKind } from "../types/misdemeanours.types";
 import MisdemeanourContext from "../hooks/misdemeanour_context";
 
+export function validateInput(
+  subject: string,
+  reason: number,
+  description: string
+): boolean {
+  if (subject.length >= 5 && reason !== 0 && description.length >= 20) {
+    return true;
+  } else {
+    return false;
+  }
+}
 const Confess: React.FC = () => {
   const submitBtn = document.getElementById("confessSubmit");
   const [subject, setSubject] = useState("");
@@ -10,20 +21,13 @@ const Confess: React.FC = () => {
   const incidentList = useContext(MisdemeanourContext);
 
   useEffect(() => {
-    /*Validation*/
+    /*Run Validation*/
     /*Chosen rules: must have a subject of > 5 chars, a description >20 and a reason selected */
-    function validateInput() {
-      if (
-        subject.length >= 5 &&
-        reasonSelected !== 0 &&
-        description.length >= 20
-      ) {
-        submitBtn?.removeAttribute("disabled");
-      } else {
-        submitBtn?.setAttribute("disabled", "");
-      }
+    if (validateInput(subject, reasonSelected, description)) {
+      submitBtn?.removeAttribute("disabled");
+    } else {
+      submitBtn?.setAttribute("disabled", "");
     }
-    validateInput();
   }, [subject, reasonSelected, description]);
 
   function convertReason() {
