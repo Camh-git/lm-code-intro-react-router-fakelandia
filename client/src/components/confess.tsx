@@ -98,7 +98,7 @@ const Confess: React.FC = () => {
     };
   }
   return (
-    <>
+    <div>
       <h1>Confess</h1>
       <p>
         It's very difficult to catch people commiting misdomeanours so we
@@ -145,7 +145,7 @@ const Confess: React.FC = () => {
           disabled
         ></input>
       </form>
-    </>
+    </div>
   );
 };
 
