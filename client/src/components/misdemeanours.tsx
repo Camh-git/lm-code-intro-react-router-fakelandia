@@ -64,7 +64,7 @@ const Misdomeanours: React.FC = () => {
                 Math.floor(Math.random() * 500) +
                 "/190/100";
               return (
-                <tr>
+                <tr key={index.citizenId}>
                   <td data-testid="citizenId">{index.citizenId}</td>
                   <td>{index.date}</td>
                   <td data-testid="incidentType">{index.misdemeanour}</td>
